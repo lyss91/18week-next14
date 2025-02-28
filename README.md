@@ -31,4 +31,14 @@ export default function Home() {
 }
 ```
 
-## Next에서는 module css만 page에 연결할 수 있다.
+## Next 에서는 moudle css 만 page 에 연결할 수 있다.
+
+- **index.moudle.css** 로 파일명 수정
+
+```tsx
+import styles from "./index.module.css";
+
+export default function Home() {
+  return <h1 className={styles.title}>홈</h1>;
+}
+```
