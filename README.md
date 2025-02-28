@@ -1,28 +1,34 @@
-# api 폴더의 이해
+# CSS
 
-- api 용도입니다.
-- http://localhost:3000/api/hello
-- https://fakestoreapi.com/
+## 인라인 스타일 시트
 
-## api 만들어보기
+- /src/pages/index.tsx
 
-- /src/pages/api/getallgood.ts
-- http://localhost:3000/api/getallgood
-
-```ts
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-  name: string;
-};
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  const data = await fetch("https://fakestoreapi.com/products");
-  const json = await data.json();
-  res.status(200).json(json);
+```tsx
+export default function Home() {
+  return <h1 style={{ color: "red" }}>홈</h1>;
 }
 ```
+
+## 외부 css 연결 파일 (Next 에서는 page 연결할수 없음)
+
+- /src/pages/index.css
+- `_app.tsx` 이외에는 절대로 사용할 수 없다.
+
+```css
+.title {
+  color: green;
+}
+```
+
+- **오류가 발생함**
+
+```tsx
+import "./index.css";
+
+export default function Home() {
+  return <h1 className="title">홈</h1>;
+}
+```
+
+## Next에서는 module css만 page에 연결할 수 있다.
